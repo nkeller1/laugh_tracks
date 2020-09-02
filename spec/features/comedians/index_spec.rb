@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Comeadians Index Page" do
+RSpec.describe "Comeadians Index Page", type: :feature do
   it "shows information for each comedian" do
     com1 = Comedian.create(
       name: "Dizzle",
