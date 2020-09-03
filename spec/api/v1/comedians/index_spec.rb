@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Comeadians Index Page" do
-  it "recieves a get request for all comedians", :vcr do
-    com1 = Comedian.create(
-      name: "Dizzle",
-      age: 35,
-      city: "Denver"
-    )
+  it "recieves a get request for all comedians" do
+    com1 = Comedian.create({ name: "Nate", age: 35, city: "Denver" })
 
     com2 = Comedian.create(
       name: "J Dog",
