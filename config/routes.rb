@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  get '/comedians', to: 'comedians#index'
+  
+  namespace :api do
+    namespace :v1 do
+      get '/comedians', to: 'comedians#index'
+    end
+  end
 end
