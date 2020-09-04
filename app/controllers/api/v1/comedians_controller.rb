@@ -2,7 +2,7 @@ class Api::V1::ComediansController < ApplicationController
   def index
     comedians = Comedian.all
     return render json: cannot_find_comedians if comedians.empty?
-    render json: ComedianSerializer.new(comedians)
+    render json: ComedianSerializer.new(comedians, include: [:tvspecials])
   end
 
   private
