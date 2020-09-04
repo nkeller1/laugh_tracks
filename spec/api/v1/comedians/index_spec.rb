@@ -16,11 +16,12 @@ RSpec.describe "Comeadians Index Page" do
     expect(response.headers["Content-Type"]).to eq("application/json; charset=utf-8")
   end
 
-  # it "catches an invalid location", :vcr do
-  #
-  #   get '/api/v1/forecast?location=rufio'
-  #
-  #   expect(response.body).to eq('Sorry, we can not locate a forecast for your search')
-  #   expect(response.headers["Content-Type"]).to eq("application/json; charset=utf-8")
-  # end
+  it "catches an empty database" do
+
+    get '/api/v1/comedians'
+
+    expect(response.body).to eq('Sorry, no comedians avaiable.')
+    expect(response.status).to eq(404)
+    expect(response.headers["Content-Type"]).to eq("application/json; charset=utf-8")
+  end
 end
