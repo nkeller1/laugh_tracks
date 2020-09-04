@@ -7,8 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 com1 = Comedian.create({ name: "Nate", age: 35, city: "Denver" })
 
-com2 = Comedian.create(
-  name: "J Dog",
-  age: 30,
-  city: "Arvada"
-)
+com2 = Comedian.create( name: "J Dog", age: 30, city: "Arvada")
