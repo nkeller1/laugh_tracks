@@ -7,8 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 com1 = Comedian.create({ name: "Nate", age: 35, city: "Denver" })
 
-com2 = Comedian.create(
-  name: "J Dog",
-  age: 30,
-  city: "Arvada"
-)
+com2 = Comedian.create( name: "J Dog", age: 30, city: "Arvada")
+
+com1.tvspecials.create(name: 'All About Me', runtime: 70)
+com1.tvspecials.create(name: 'Not My Special', runtime: 100)
+com2.tvspecials.create(name: 'Comedian2 Special', runtime: 90)
+com2.tvspecials.create(name: 'Really, Kitty?', runtime: 80)
