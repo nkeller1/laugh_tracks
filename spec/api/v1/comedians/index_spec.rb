@@ -2,12 +2,18 @@ require 'rails_helper'
 
 RSpec.describe "Comeadians Index Page" do
   it "recieves a get request for all comedians" do
-    com1 = Comedian.create({ name: "Nate", age: 35, city: "Denver" })
+    com1 = Comedian.create({
+      name: "Nate",
+      age: 35,
+      city: "Denver",
+      image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+      })
 
     com2 = Comedian.create(
       name: "J Dog",
       age: 30,
-      city: "Arvada"
+      city: "Arvada",
+      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
     )
 
     get '/api/v1/comedians'
@@ -30,10 +36,20 @@ RSpec.describe "Comeadians Index Page" do
   end
 
   it "recieves sees the tvspecials a comedian has" do
-    com1 = Comedian.create({ name: "Nate", age: 35, city: "Denver" })
+    com1 = Comedian.create({
+      name: "Nate",
+      age: 35,
+      city: "Denver",
+      image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+      })
 
-    com2 = Comedian.create( name: "J Dog", age: 30, city: "Arvada")
-
+    com2 = Comedian.create(
+      name: "J Dog",
+      age: 30,
+      city: "Arvada",
+      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
+    )
+    
     tvspecial1 = com1.tvspecials.create(name: 'All About Me', runtime: 70)
     tvspecial2 = com1.tvspecials.create(name: 'Not My Special', runtime: 100)
     tvspecial3 = com2.tvspecials.create(name: 'Comedian2 Special', runtime: 90)
