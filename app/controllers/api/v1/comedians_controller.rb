@@ -13,10 +13,27 @@ class Api::V1::ComediansController < ApplicationController
     render json: ComedianSerializer.new(comedians, include: [:tvspecials])
   end
 
+  def create
+    comedian = Comedian.new(
+      name: params[:name],
+      age: params[:age],
+      city: params[:city],
+      image_url: params[:image_url]
+    )
+    comedian.save
+    return render json: missing_attributes if comedian.save == false
+    render json: ComedianSerializer.new(comedian, include: [:tvspecials]) if comedian.save
+  end
+
   private
 
     def cannot_find_comedians
       response.status = 404
       response.body = 'Sorry, no comedians avaiable.'
+    end
+
+    def missing_attributes
+      response.status = 404
+      response.body = 'Unable to create comedian, missing attributes.'
     end
 end
