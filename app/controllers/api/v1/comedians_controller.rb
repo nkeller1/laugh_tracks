@@ -10,7 +10,9 @@ class Api::V1::ComediansController < ApplicationController
       comedians = Comedian.all
     end
     return render json: cannot_find_comedians if comedians.empty?
-    render json: ComedianSerializer.new(comedians, include: [:tvspecials])
+    parsed = ComedianSerializer.new(comedians, include: [:tvspecials])
+    stats = {group_statistics: [{average_age: comedians.average_age}, {unique_cities: comedians.list_uniq_cities}]}
+    render json: [stats, parsed]
   end
 
   def create

@@ -33,4 +33,68 @@ RSpec.describe Comedian, type: :model do
     expect(com1.count_tv_specials).to eq(2)
     expect(com2.count_tv_specials).to eq(0)
   end
+
+  it "#average_age" do
+    com1 = Comedian.create({
+      name: "Nate",
+      age: 35,
+      city: "Denver",
+      image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+      })
+
+    com2 = Comedian.create(
+      name: "J Dog",
+      age: 30,
+      city: "Arvada",
+      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
+    )
+
+    com3 = Comedian.create({
+      name: "Rufio",
+      age: 20,
+      city: "Denver",
+      image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+      })
+
+    com4 = Comedian.create(
+      name: "Sage",
+      age: 30,
+      city: "Arvada",
+      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
+    )
+
+    expect(Comedian.all.average_age).to eq(29)
+  end
+
+  it "#list_uniq_cities" do
+    com1 = Comedian.create({
+      name: "Nate",
+      age: 35,
+      city: "Denver",
+      image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+      })
+
+    com2 = Comedian.create(
+      name: "J Dog",
+      age: 30,
+      city: "Arvada",
+      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
+    )
+
+    com3 = Comedian.create({
+      name: "Rufio",
+      age: 20,
+      city: "Denver",
+      image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+      })
+
+    com4 = Comedian.create(
+      name: "Sage",
+      age: 30,
+      city: "Arvada",
+      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
+    )
+
+    expect(Comedian.all.list_uniq_cities).to eq(["Arvada", "Denver"])
+  end
 end

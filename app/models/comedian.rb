@@ -5,4 +5,12 @@ class Comedian < ApplicationRecord
   def count_tv_specials
     self.tvspecials.length
   end
+
+  def self.average_age
+    self.all.average(:age).round
+  end
+
+  def self.list_uniq_cities
+    self.all.select(:city).distinct.pluck(:city)
+  end
 end

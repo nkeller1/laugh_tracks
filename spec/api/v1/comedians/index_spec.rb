@@ -89,4 +89,26 @@ RSpec.describe "Comeadians Index Page" do
 
     expect(response.body).to include(com1.count_tv_specials.to_s)
   end
+
+  it "responds with statistics on get request" do
+      com1 = Comedian.create({
+        name: "Nate",
+        age: 35,
+        city: "Denver",
+        image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+        })
+
+      com2 = Comedian.create(
+        name: "J Dog",
+        age: 30,
+        city: "Arvada",
+        image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
+      )
+
+      get '/api/v1/comedians'
+
+      expect(response).to be_successful
+      expect(response.headers["Content-Type"]).to eq("application/json; charset=utf-8")
+      expect(response.body).to include("[{\"group_statistics\":[{\"average_age\":33},{\"unique_cities\":[\"Arvada\",\"Denver\"]}]}")
+  end
 end
