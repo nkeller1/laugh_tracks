@@ -5,4 +5,8 @@ class Comedian < ApplicationRecord
   def count_tv_specials
     self.tvspecials.length
   end
+
+  def self.average_age
+    self.all.average(:age).round
+  end
 end
