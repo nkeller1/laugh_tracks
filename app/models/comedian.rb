@@ -9,4 +9,8 @@ class Comedian < ApplicationRecord
   def self.average_age
     self.all.average(:age).round
   end
+
+  def self.lists_uniq_cities
+    self.all.select(:city).distinct.pluck(:city)
+  end
 end
