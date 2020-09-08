@@ -13,4 +13,8 @@ class Comedian < ApplicationRecord
   def self.list_uniq_cities
     self.all.select(:city).distinct.pluck(:city)
   end
+
+  def self.count_group_tvspecials
+    all.joins(:tvspecials).count
+  end
 end
