@@ -98,7 +98,7 @@ RSpec.describe Comedian, type: :model do
     expect(Comedian.all.list_uniq_cities).to eq(["Arvada", "Denver"])
   end
 
-  it "counts all tv specials for all comedians on filtered index" do
+  it "#count_group_tvspecials" do
     com1 = Comedian.create({
       name: "Nate",
       age: 35,
@@ -119,5 +119,28 @@ RSpec.describe Comedian, type: :model do
     com2.tvspecials.create(name: 'Rufio', runtime: 80)
 
     expect(Comedian.all.count_group_tvspecials).to eq(4)
+  end
+
+  it "#average_run_length_of_tv_special" do
+    com1 = Comedian.create({
+      name: "Nate",
+      age: 35,
+      city: "Denver",
+      image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+      })
+
+    com2 = Comedian.create(
+      name: "J Dog",
+      age: 30,
+      city: "Arvada",
+      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_6JOIep3YiTWHQ4LyD0OcQoR5XJV7u31tgg&usqp=CAU"
+    )
+
+    com1.tvspecials.create(name: 'All About Me', runtime: 100)
+    com1.tvspecials.create(name: 'Not My Special', runtime: 100)
+    com2.tvspecials.create(name: 'Another Special', runtime: 120)
+    com2.tvspecials.create(name: 'Rufio', runtime: 80)
+
+    expect(Comedian.all.average_run_length_of_tv_special).to eq(100)
   end
 end
