@@ -106,13 +106,15 @@ RSpec.describe "Comeadians Index Page" do
       )
 
       get '/api/v1/comedians'
+  
+      expected = "{\"group_statistics\":[{\"average_age\":33},{\"unique_cities\":[\"Arvada\",\"Denver\"]},{\"group_tvspecials\":0}"
 
       expect(response).to be_successful
       expect(response.headers["Content-Type"]).to eq("application/json; charset=utf-8")
-      expect(response.body).to include("[{\"group_statistics\":[{\"average_age\":33},{\"unique_cities\":[\"Arvada\",\"Denver\"]}]}")
+      expect(response.body).to include(expected)
   end
 
-  it "responds with narrowed stats on a git reqquest" do
+  it "responds with narrowed stats on a get request" do
       com1 = Comedian.create({
         name: "Nate",
         age: 35,
@@ -129,8 +131,10 @@ RSpec.describe "Comeadians Index Page" do
 
       get '/api/v1/comedians?city=Arvada'
 
+      expected = "{\"group_statistics\":[{\"average_age\":30},{\"unique_cities\":[\"Arvada\"]},{\"group_tvspecials\":0}"
+
       expect(response).to be_successful
       expect(response.headers["Content-Type"]).to eq("application/json; charset=utf-8")
-      expect(response.body).to include("[{\"group_statistics\":[{\"average_age\":30},{\"unique_cities\":[\"Arvada\"]}]}")
+      expect(response.body).to include(expected)
   end
 end
