@@ -26,9 +26,12 @@ class Comedian < ApplicationRecord
   end
 
   def self.average_run_length_of_tv_special
-    self.all
-    .joins(:tvspecials)
-    .average(:runtime)
-    .round
+    if all.count_group_tvspecials == 0
+      "No TV Specials for this group"
+    else
+      self.all
+      .joins(:tvspecials)
+      .average(:runtime).round
+    end
   end
 end

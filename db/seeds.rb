@@ -19,6 +19,13 @@ com3 = Comedian.create({
   image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
   })
 
+com4 = Comedian.create({
+  name: "Sage",
+  age: 21,
+  city: "Littleton",
+  image_url: "https://i.ytimg.com/vi/zF1T9-6J4Hg/maxresdefault.jpg"
+  })
+
 com1.tvspecials.create(name: 'All About Me', runtime: 70)
 com1.tvspecials.create(name: 'Not My Special', runtime: 100)
 com2.tvspecials.create(name: 'Comedian2 Special', runtime: 90)
